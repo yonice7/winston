@@ -1,0 +1,6 @@
+# Local environment variables
+.env
+
+# __pycache__ folders
+__pycache__/*
+melp/__pycache__/*
