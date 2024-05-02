@@ -25,10 +25,10 @@ source bin/activate
 deactive
 ```
 
-Once the environment is already activated go to the repository folder `cd /path/to/lucas` and install the required modules
+Once the environment is already activated go to the repository folder `cd /path/to/winston` and install the required modules
 
 ```shell
-# in ~/path/to/lucas/ repository run
+# in ~/path/to/winston/ repository run
 pip install -r requirements.txt
 ```
 
