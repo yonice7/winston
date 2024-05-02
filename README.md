@@ -1,6 +1,6 @@
 # Lucas
 
-Lucas is a program to that helps you to automate the control of your personal finances, saving you hours of transactions record entry, calculation, sheets editing, etc.
+Winston is a program that helps you pay your personal bills in vnzla using banco mercantil
 
 ## Installation
 
@@ -30,14 +30,6 @@ Once the environment is already activated go to the repository folder `cd /path/
 ```shell
 # in ~/path/to/lucas/ repository run
 pip install -r requirements.txt
-```
-
-Create your Gmail credentails, look the at the guide [here](https://developers.google.com/workspace/guides/create-credentials?hl=es-419#google-cloud-console)
-
-```shell
-# 1. download the json file
-# 2. move to the lucas local repository
-mv ~/Downloads/credential_name.json /path/to/lucas/google_credentials.json
 ```
 
 ## Usage
