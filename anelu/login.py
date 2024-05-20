@@ -2,7 +2,6 @@ import os
 import asyncio
 from playwright.async_api import async_playwright
 from dotenv import load_dotenv
-from text_unidecode import unidecode
 
 load_dotenv()
 
