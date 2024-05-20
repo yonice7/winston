@@ -8,7 +8,7 @@ import ast
 load_dotenv()
 
 
-async def login():
+async def login_merc():
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=False)  # Keep browser open
 
@@ -81,6 +81,3 @@ async def answer_questions(page, answers):
         await question_field2.fill(answers[1])
     except IndexError:
         print(f"Error: Not enough answers provided. Expected answer for question 2.")
-
-
-asyncio.run(login())
