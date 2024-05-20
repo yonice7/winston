@@ -2,6 +2,7 @@ import os
 import asyncio
 from playwright.async_api import async_playwright
 from dotenv import load_dotenv
+# added unicode to remove diacriticas 'acentos' in Spanish
 from text_unidecode import unidecode
 import ast
 
