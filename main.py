@@ -3,6 +3,7 @@ import asyncio
 import os
 # from .merc import login
 from anelu.login import login_anelu
+# TODO: Add the get_context function from the context module
 
 
 def main():
