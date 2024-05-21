@@ -1,8 +1,6 @@
 import os
 import asyncio
-from playwright.async_api import async_playwright
 from dotenv import load_dotenv
-from context import get_context
 
 # loading the .env file
 load_dotenv()
