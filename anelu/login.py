@@ -4,11 +4,13 @@ from playwright.async_api import async_playwright
 from dotenv import load_dotenv
 from context import get_context
 
+# loading the .env file
 load_dotenv()
 
 
 async def login_anelu(context, page):
-    await page.goto("https://www.administradoranelu.com/")
+
+    await page.goto(os.getenv("ANELU_CODE"))
     await page.click("a.header-top-info__link")
     username_field = page.locator("input[name='usuario']")
     password_field = page.locator("input[name='password']")
@@ -18,7 +20,7 @@ async def login_anelu(context, page):
     await page.click("text=Ingresar")
 
     await asyncio.sleep(4)
-    if page.url == "https://www.administradoranelu.com/enlinea/":
-        return "successful"
+    if page.url == os.getenv("ANELU_LOGGED"):
+        return True
     else:
-        return "failed"
+        return False
