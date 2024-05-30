@@ -1,9 +1,5 @@
 import os
 import asyncio
-from dotenv import load_dotenv
-
-# Loading the .env file
-load_dotenv()
 
 
 async def get_invoices(page):

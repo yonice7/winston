@@ -1,43 +1,35 @@
 import os
 import asyncio
-from playwright.async_api import async_playwright
-from dotenv import load_dotenv
 # added unicode to remove diacriticas 'acentos' in Spanish
 from text_unidecode import unidecode
 import ast
 
-load_dotenv()
 
+async def login_merc(context, page):
 
-async def login_merc():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False)  # Keep browser open
+    # going to the website and input credentials
+    await page.goto(os.getenv("MER_LOGIN"))
+    username_field = page.locator("#username")
+    password_field = page.locator("#password")
+    await username_field.fill(os.getenv("MER_USERNAME"))
+    await password_field.fill(os.getenv("MER_PASSWORD"))
+    await page.locator("text=Iniciar").click()
 
-        page = await browser.new_page()
+    # works when going to page from one to the other, if not the browser closes
+    await asyncio.sleep(2)
+    if page.url == os.getenv("MER_QUESTIONS"):
+        questions = await find_questions(page)
+        await answer_questions(page, await find_answers(questions))
+        await page.locator("label >> text=Equipo de uso personal").click()
+        await page.locator("button >> text=Continuar").click()
 
-        await page.goto("https://www30.mercantilbanco.com/melp/login")
-
-        username_field = page.locator("#username")
-        password_field = page.locator("#password")
-
-        await username_field.fill(os.getenv("MER_USERNAME"))
-        await password_field.fill(os.getenv("MER_PASSWORD"))
-        await page.locator("text=Iniciar").click()
-
-        # works when going to page from one to the other, if not the browser closes
-        await asyncio.sleep(2)
-        if page.url == "https://www30.mercantilbanco.com/melp/secure-access":
-            questions = await find_questions(page)
-            await answer_questions(page, await find_answers(questions))
-            await page.locator("label >> text=Equipo de uso personal").click()
-            await page.locator("button >> text=Continuar").click()
-
-        await asyncio.sleep(2)
-        if page.url == "https://www30.mercantilbanco.com/melp/summary":
-            print("Login successful")
-        else:
-            print("Login failed")
-        print(page.url)
+    # checking if login is succesfull
+    await asyncio.sleep(2)
+    if page.url == os.getenv("MER_LOGGED"):
+        return True
+    else:
+        return False
+    # print(page.url) --> debugging 😬
 
 
 async def sec_questions():
