@@ -14,7 +14,7 @@ async def get_invoices(page):
 
 
 async def pay_invoices(page):
-    # TODO: complete the logic here
+    # TODO: wait until there's a new invoice and complete the logic here
     # I think I did a bad job on getting the checkbox attributes and I'm missing something I have to revisit this when there's a new invoice
     await page.goto(os.getenv("ANELU_REGISTER"))
     return "hello"
